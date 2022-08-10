@@ -116,22 +116,22 @@ import { Car, cars as cars_list } from './cars';
   } );
   /// @TODO Add an endpoint to post a new car to our list
   // it should require id, type, model, and cost
-  // app.post("/cars", 
-  //   async (req: Request, res: Response ) => {
-  //     // Get parameters from the request  body
-  //     const car: Car = req.body;
+  app.post("/cars", 
+    async (req: Request, res: Response ) => {
+      // Get parameters from the request  body
+      const car: Car = req.body;
 
-  //     // If no parameters, exit with error code 400
-  //     if ( !car ) {
-  //       return res.status(400)
-  //                 .send('car details required')
-  //     }
+      // If no parameters, exit with error code 400
+      if ( !car ) {
+        return res.status(400)
+                  .send('car details required')
+      }
 
-  //     // If existing exit with success code 200
-  //     return res.status(200)
-  //               .send(car)
-  //   }
-  // )
+      // If existing exit with success code 200
+      return res.status(200)
+                .send(car)
+    }
+  )
   
   
   
