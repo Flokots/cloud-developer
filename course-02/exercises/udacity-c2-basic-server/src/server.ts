@@ -2,7 +2,6 @@ import express, { Router, Request, Response } from 'express';
 import bodyParser from 'body-parser';
 
 import { Car, cars as cars_list } from './cars';
-import { RSA_NO_PADDING } from 'constants';
 
 (async () => {
   let cars:Car[]  = cars_list;
@@ -95,8 +94,47 @@ import { RSA_NO_PADDING } from 'constants';
   // it should require id
   // it should fail gracefully if no matching car is found
 
+  app.get( "/cars/:id", (req: Request, res: Response ) => {
+  let  { id }  = req.params;
+
+    if (!id ) {
+      return res.status(400)
+                .send(`id is required`);
+    } 
+    
+    // try to find the car by id
+    const car = cars.filter((car) => car.id == Number(id));
+    
+    // respond not found, if we do not have this id
+    if (car && car.length === 0) {
+      return res.status(404).send(`car is not found`);
+    }
+
+    //return the car with a sucess status code
+    return res.status(200)
+              .send(car);
+  } );
   /// @TODO Add an endpoint to post a new car to our list
   // it should require id, type, model, and cost
+  // app.post("/cars", 
+  //   async (req: Request, res: Response ) => {
+  //     // Get parameters from the request  body
+  //     const car: Car = req.body;
+
+  //     // If no parameters, exit with error code 400
+  //     if ( !car ) {
+  //       return res.status(400)
+  //                 .send('car details required')
+  //     }
+
+  //     // If existing exit with success code 200
+  //     return res.status(200)
+  //               .send(car)
+  //   }
+  // )
+  
+  
+  
 
   // Start the Server
   app.listen( port, () => {
