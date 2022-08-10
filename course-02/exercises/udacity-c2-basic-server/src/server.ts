@@ -116,26 +116,30 @@ import { Car, cars as cars_list } from './cars';
   } );
   /// @TODO Add an endpoint to post a new car to our list
   // it should require id, type, model, and cost
-  app.post("/cars", 
-    async (req: Request, res: Response ) => {
-      // Get parameters from the request  body
-      const car: Car = req.body;
+  app.post("/cars/", (req: Request, res: Response ) => {
+    // Destruct body payload for the variables
+    let { make, type, model, cost, id } = req.body;
 
-      // If no parameters, exit with error code 400
-      if ( !car ) {
-        return res.status(400)
-                  .send('car details required')
-      }
-
-      // If existing exit with success code 200
-      return res.status(200)
-                .send(car)
+    //check to make sure all required variables are set
+    if ( !id || !type || !model || !cost ) {
+      // respond with an error if not
+      res.status(400)
+          .send(`id, type, model, and cost required!`)
     }
-  )
-  
-  
-  
 
+    // Create a new car instance
+    const new_car: Car = {
+      make: make, type: type, model: model, cost: cost, id: id
+    }
+    
+    // add this car to the local variable
+    cars.push(new_car);
+
+    // send the complete car object as a response
+    // along with 201 - creation success
+    return res.status(201).send(new_car);
+  } )
+  
   // Start the Server
   app.listen( port, () => {
       console.log( `server running http://localhost:${ port }` );
