@@ -70,9 +70,6 @@ import { Car, cars as cars_list } from './cars';
 
   // @TODO Add an endpoint to GET a list of cars
   // it should be filterable by make with a query paramater
-  // app.get("/cars", ( req: Request, res: Response ) => {
-  //     res.status(200).send(cars);
-  //   } );
 
   app.get("/cars/", (req: Request, res:Response ) => {
     // destruct query parameters
