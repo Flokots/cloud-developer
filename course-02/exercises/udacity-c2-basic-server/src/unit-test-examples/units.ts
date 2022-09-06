@@ -14,7 +14,7 @@ export const divide = (a: number, b: number) => {
 export const concat = (a: string, b: string) => {
     if (a === '' || b === '') {throw new Error('empty string')}
 
-    return a + b;
+    return a + ' ' +  b;
 }
 // it should take two string paramaters.
 // it should return one string combining the two strings.
