@@ -30,7 +30,19 @@ router.patch('/:id',
     requireAuth, 
     async (req: Request, res: Response) => {
         //@TODO try it yourself
-        res.status(500).send("not implemented")
+        const caption = req.body.caption;
+         const fileName = req.body.url;
+        
+        const item = await new FeedItem({
+            caption: caption,
+            url: fileName
+        })
+
+        const saved_item = await item.save()
+
+        saved_item.url = AWS.getGetSignedUrl(saved_item.url);
+        res.status(201).send(saved_item);
+        // res.status(500).send("not implemented")
 });
 
 
