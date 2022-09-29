@@ -22,7 +22,7 @@ export const s3 = new AWS.S3({
  * @Returns:
  *    a url as a string
  */
-export function getGetSignedUrl( key: string ): string{
+export function getGetSignedUrl( key: string ){
 
   const signedUrlExpireSeconds = 60 * 5
 
@@ -45,7 +45,7 @@ export function getPutSignedUrl( key: string ){
 
     const signedUrlExpireSeconds = 60 * 5
 
-    const url = s3.getSignedUrl('putObject', {
+    const url: string = s3.getSignedUrl('putObject', {
       Bucket: c.aws_media_bucket,
       Key: key,
       Expires: signedUrlExpireSeconds
