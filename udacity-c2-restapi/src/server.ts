@@ -13,6 +13,8 @@ import { V0MODELS } from './controllers/v0/model.index';
 
   const app = express();
   const port = process.env.PORT || 8080; // default port to listen
+
+  require('dotenv').config();
   
   app.use(bodyParser.json());
 
