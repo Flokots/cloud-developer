@@ -1,0 +1,3 @@
+[submodule "udacity-c2-restapi/udacity-c2-restapi/aws-elastic-beanstalk-cli-setup"]
+	path = udacity-c2-restapi/udacity-c2-restapi/aws-elastic-beanstalk-cli-setup
+	url = /home/flo/alx-t/course-2/cloud-developer/udacity-c2-restapi/aws-elastic-beanstalk-cli-setup/
